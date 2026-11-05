@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}MovieApp{% endblock %} · MoviWeb</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <a class="brand" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='logo.svg') }}" alt="" width="32" height="32">
+                <span>MovieApp</span>
+            </a>
+            <a class="nav-link" href="{{ url_for('index') }}">Users</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="flash flash-{{ category }}" role="status">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>MoviWeb App · Movie data by <a href="https://www.omdbapi.com/" target="_blank" rel="noopener">OMDb API</a></p>
+    </footer>
+</body>
+</html>

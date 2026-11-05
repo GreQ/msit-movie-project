@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<section class="panel">
+    <h1>Users</h1>
+    {% if users %}
+        <ul class="user-list">
+            {% for user in users %}
+            <li class="user-entry">
+                <a href="{{ url_for('get_movies', user_id=user.id) }}" class="btn btn-user">
+                    <span class="avatar" aria-hidden="true">{{ user.name[:1] | upper }}</span>
+                    {{ user.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="empty">No users yet — add the first one below.</p>
+    {% endif %}
+</section>
+
+<section class="panel">
+    <h2>Add a new user</h2>
+    <form action="{{ url_for('create_user') }}" method="post" class="inline-form">
+        <label for="name" class="visually-hidden">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name"
+               maxlength="100" required>
+        <button type="submit" class="btn btn-primary">Add user</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Movies for {{ user.name }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="back-link">&larr; Back to Users</a>
+<h1>Movies for {{ user.name }}</h1>
+
+<section class="panel">
+    <h2>Add a movie</h2>
+    <form action="{{ url_for('add_movie', user_id=user.id) }}" method="post" class="inline-form">
+        <label for="title" class="visually-hidden">Movie title</label>
+        <input type="text" id="title" name="title" placeholder="Movie title, e.g. Titanic"
+               maxlength="200" required>
+        <button type="submit" class="btn btn-primary">Add movie</button>
+    </form>
+    <p class="hint">Director, year and poster are fetched from OMDb automatically.</p>
+</section>
+
+{% if movies %}
+<ul class="movie-grid">
+    {% for movie in movies %}
+    <li class="movie-card">
+        {% if movie.poster_url %}
+            <img class="poster" src="{{ movie.poster_url }}" alt="Poster of {{ movie.name }}" loading="lazy">
+        {% else %}
+            <div class="poster poster-placeholder" aria-hidden="true">🎬</div>
+        {% endif %}
+
+        <form action="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}"
+              method="post" class="update-form">
+            <label for="title-{{ movie.id }}" class="visually-hidden">Title</label>
+            <input type="text" id="title-{{ movie.id }}" name="title"
+                   value="{{ movie.name }}" maxlength="200" required>
+            <button type="submit" class="btn btn-small btn-primary">Update</button>
+        </form>
+
+        <p><strong>Year:</strong> {{ movie.year or "unknown" }}</p>
+        <p><strong>Director:</strong> {{ movie.director or "unknown" }}</p>
+
+        <form action="{{ url_for('delete_movie', user_id=user.id, movie_id=movie.id) }}"
+              method="post" data-title="{{ movie.name }}"
+              onsubmit="return confirm('Delete “' + this.dataset.title + '”?');">
+            <button type="submit" class="btn btn-small btn-danger">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p class="empty">{{ user.name }} has no favourite movies yet.</p>
+{% endif %}
+{% endblock %}
