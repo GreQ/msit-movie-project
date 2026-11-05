@@ -1,0 +1,18 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets / local config
+.env
+
+# SQLite database (created at runtime)
+data/*.db
+
+# IDE
+.idea/
+.vscode/
