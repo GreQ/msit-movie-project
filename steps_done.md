@@ -103,11 +103,16 @@ was turned into this project. Date: 2026-11-05.
   with warning flash), renamed it to "Titanic", deleted it. No console errors,
   no server errors, CSS and logo load.
 - `pip list --outdated` → nothing outdated.
-- Not verified: a real OMDb lookup (no API key available yet). The success path
-  is covered by mocked tests; once a key is in `.env` posters/director/year appear.
+- Real OMDb lookup: initially not possible (no key); verified later, see below.
 - OMDb key added to the git-ignored `.env` (together with a random
   `FLASK_SECRET_KEY`); it is never committed. A live check returned
   HTTP 401 `"Invalid API key!"` – OMDb keys only work after clicking the
   activation link in OMDb's e-mail, or the key may be mistyped. Until then
   the app uses its title-only fallback.
+- After the user activated the key, re-tested live: `fetch_movie` returned
+  correct data for *Titanic* (James Cameron, 1997), *Twister* (Jan de Bont,
+  1996) and *Good Will Hunting* (Gus Van Sant, 1998) and `None` for a
+  nonsense title. In the running app the three movies were added for user
+  "Deb" and shown as poster cards with year and director, matching the
+  guide's screenshot; no server errors.
 - Not done: deployment to PythonAnywhere (bonus), pushing to a GitHub remote.
