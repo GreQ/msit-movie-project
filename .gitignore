@@ -16,3 +16,6 @@ data/*.db
 # IDE
 .idea/
 .vscode/
+
+# Local Claude Code preview config
+.claude/

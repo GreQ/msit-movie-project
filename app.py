@@ -101,6 +101,11 @@ def register_routes(app):
         users = data_manager.get_users()
         return render_template("index.html", users=users)
 
+    @app.route("/favicon.ico")
+    def favicon():
+        """Browsers request /favicon.ico regardless of <link rel=icon>."""
+        return redirect(url_for("static", filename="logo.svg"), code=301)
+
     @app.route("/users", methods=["POST"])
     def create_user():
         """Create a user from the form on the home page."""

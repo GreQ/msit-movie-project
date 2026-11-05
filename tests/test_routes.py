@@ -137,3 +137,9 @@ def test_database_error_shows_friendly_message(client, dm, monkeypatch):
     response = client.post("/users", data={"name": "Deb"}, follow_redirects=True)
     assert response.status_code == 200
     assert b"could not be saved" in response.data
+
+
+def test_favicon_redirects_to_logo(client):
+    response = client.get("/favicon.ico")
+    assert response.status_code == 301
+    assert response.headers["Location"].endswith("/static/logo.svg")
