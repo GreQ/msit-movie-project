@@ -105,4 +105,9 @@ was turned into this project. Date: 2026-11-05.
 - `pip list --outdated` → nothing outdated.
 - Not verified: a real OMDb lookup (no API key available yet). The success path
   is covered by mocked tests; once a key is in `.env` posters/director/year appear.
+- OMDb key added to the git-ignored `.env` (together with a random
+  `FLASK_SECRET_KEY`); it is never committed. A live check returned
+  HTTP 401 `"Invalid API key!"` – OMDb keys only work after clicking the
+  activation link in OMDb's e-mail, or the key may be mistyped. Until then
+  the app uses its title-only fallback.
 - Not done: deployment to PythonAnywhere (bonus), pushing to a GitHub remote.
