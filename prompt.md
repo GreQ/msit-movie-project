@@ -1,4 +1,63 @@
-# Prompt to recreate the MoviWeb App
+# MoviWeb App – Prompts
+
+This file has two parts:
+
+1. **Your original task prompt**, structured – the instructions that started
+   this project, plus the follow-up requests.
+2. **Recreation spec** – everything needed to rebuild an equivalent app from
+   scratch.
+
+---
+
+# Part 1 – Original task prompt (structured)
+
+## Role & goal
+
+Build a Python project that matches, as closely as possible, the guide
+**"Movie Project – Flask + SqlAlchemy (new)"** on Codio:
+`https://codio.com/ghinsberg/movie-project-flask-plus-sqlalchemy-new-/terminal/backend-guide`
+
+## Source
+
+- Read the guide using the **Claude in Chrome** extension.
+
+## Before starting
+
+- **Ask questions first** if anything is unclear, or if there are several
+  ways to solve an issue – let me decide before you build.
+
+## Requirements
+
+| # | Requirement |
+|---|---|
+| 1 | Create a Python project that follows the guide as closely as possible. |
+| 2 | Use the **most current versions** of all Python modules in the project. |
+| 3 | **Check your work for bugs** and confirm that the app actually **runs**. |
+
+## Version control
+
+- Initialise a **git** repository.
+- **Commit frequently**, each with a **descriptive, meaningful** message.
+
+## Deliverables
+
+| File | Content |
+|---|---|
+| Project code | The working Flask + SQLAlchemy application. |
+| `steps_done.md` | A protocol of everything you did to complete the guide. |
+| `prompt.md` | Everything needed to recreate a similar application. |
+
+## Follow-up requests (later in the session)
+
+1. Add my OMDb API key to the project (stored in the git-ignored `.env`,
+   never committed).
+2. After I activated the key: re-test the live OMDb lookup.
+3. Send me `prompt.md` to read.
+4. Put my original prompt into `prompt.md` in a structured way (this Part 1).
+
+---
+
+# Part 2 – Recreation spec
 
 Copy everything below the line into an AI coding assistant (or use it as a
 spec for yourself) to build an equivalent application from scratch.
